@@ -4,6 +4,7 @@ from OpenGL.GLU import *
 from math import *
 import globais
 from key_functions import *
+from objeto import *
 import sys
 
 def desenharCena():#funcao de desenho
@@ -27,14 +28,15 @@ def desenharCena():#funcao de desenho
                   globais.up.item(0),
                   globais.up.item(1),
                   globais.up.item(2))
-        	
-	glScalef(0.5, 0.5, 0.5)
-	glCallList(globais.chaleira.gl_list)
 
-	glTranslatef(6,0,0)
-	glScalef(0.05, 0.05, 0.05)
-	glCallList(globais.planta.gl_list)
-
+        desenha_objetos()
+#	glScalef(0.5, 0.5, 0.5)
+#	glCallList(globais.chaleira.gl_list)
+#
+#	glTranslatef(6,0,0)
+#	glScalef(0.05, 0.05, 0.05)
+#	glCallList(globais.planta.gl_list)
+#
 	glutSwapBuffers()
 
 def redimensionar(largura, altura):
