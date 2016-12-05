@@ -12,10 +12,22 @@ def desenharCena():#funcao de desenho
 	atualizar_eventos()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity()
-	glRotatef(globais.yrot, 0,1.0,0)
-	glTranslatef(globais.xtrans,globais.ytrans,globais.ztrans)
 
+        res = np.add(globais.viewPos, globais.viewDirection)
+        print(globais.viewPos)
+        print(globais.viewDirection)
+        print(res)
+        glLoadIdentity()
+        gluLookAt(globais.viewPos.item(0),
+                  globais.viewPos.item(1),
+                  globais.viewPos.item(2),
+                  res.item(0),
+                  res.item(1),
+                  res.item(2),
+                  globais.up.item(0),
+                  globais.up.item(1),
+                  globais.up.item(2))
+        	
 	glScalef(0.5, 0.5, 0.5)
 	glCallList(globais.chaleira.gl_list)
 
@@ -23,7 +35,6 @@ def desenharCena():#funcao de desenho
 	glScalef(0.05, 0.05, 0.05)
 	glCallList(globais.planta.gl_list)
 
-	globais.rtri  = globais.rtri + 0.2
 	glutSwapBuffers()
 
 def redimensionar(largura, altura):

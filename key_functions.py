@@ -1,3 +1,4 @@
+import numpy as np
 import globais
 import math
 
@@ -17,23 +18,22 @@ def atualizar_eventos():
 
 def anda_frente():
     print("anda_frente")
-    globais.ztrans += math.cos(math.radians(globais.yrot)) * globais.passo
-    globais.xtrans -= math.sin(math.radians(globais.yrot)) * globais.passo
+    globais.viewPos += np.multiply(globais.viewDirection, globais.passo)
+    print(globais.viewPos)
 
 def anda_traz():
     print("anda_traz")
-    globais.ztrans -= math.cos(math.radians(globais.yrot)) * globais.passo
-    globais.xtrans += math.sin(math.radians(globais.yrot)) * globais.passo
+    globais.viewPos -= np.multiply(globais.viewDirection, globais.passo)
 
 def anda_esquerda():
     print("anda_esquerda")
-    globais.ztrans -= math.cos(math.radians(globais.yrot + 90)) * globais.passo
-    globais.xtrans += math.sin(math.radians(globais.yrot + 90)) * globais.passo
+    cross = np.cross(globais.viewDirection, globais.up)
+    globais.viewPos += np.multiply(cross, -globais.passo)
 
 def anda_direita():
     print("anda_direita")
-    globais.ztrans += math.cos(math.radians(globais.yrot + 90)) * globais.passo
-    globais.xtrans -= math.sin(math.radians(globais.yrot + 90)) * globais.passo
+    cross = np.cross(globais.viewDirection, globais.up)
+    globais.viewPos += np.multiply(cross, globais.passo)
 
 def olha_esquerda():
     print("olha_esquerda")

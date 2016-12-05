@@ -6,11 +6,12 @@ from math import *            # Module for trigonometric functions.
 from gl_functions import *
 from globais import *
 from objloader import *
+from mouse_functions import *
 import sys            
 
 
 def main():
-	global janela
+        global janela
 
 	#Inicia o OpenGl
 	glutInit(sys.argv)
@@ -30,6 +31,7 @@ def main():
 	glutIdleFunc(desenharCena)      #funcao quando em espera    
 	glutKeyboardFunc(teclaApertada) #funcao de quando uma tecla e apertada
 	glutKeyboardUpFunc(teclaSolta)  #funcao de quando uma tecla e solta
+        glutPassiveMotionFunc(mouseMoveu)
 	#Inicia a execucao
 	glutMainLoop()
 

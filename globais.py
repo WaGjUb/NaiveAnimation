@@ -1,18 +1,21 @@
+import numpy as np
 #Globais
 
 #Olhar para cima, baixo, esquerda, direita
-xrot = 0            # x rotacao
-yrot = 0            # y rotacao
+up = np.mat([0.0,1.0,0.0])
+viewDirection = np.mat([0.0,0.0,1.0])
+sensibilidade = 0.05
 
 #Indicam a tranlacao do mundo 
 #(ilusao de mover a camera)
-xtrans = -1
-ytrans = -1
-ztrans = -5
+xtrans = 1.0
+ytrans = 1.0
+ztrans = -5.0
+viewPos = np.mat([ xtrans, ytrans, ztrans ])
 
 #tamanho do passo dado
-passo = 0.01
-passo_rotacao = 0.3 #graus
+passo = 0.2
+passo_rotacao = 0.003
 
 janela = None
 rtri = 0
