@@ -13,10 +13,9 @@ def desenharCena():#funcao de desenho
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
         res = np.add(globais.viewPos, globais.viewDirection)
-        print(globais.viewPos)
-        print(globais.viewDirection)
-        print(res)
+
         glLoadIdentity()
         gluLookAt(globais.viewPos.item(0),
                   globais.viewPos.item(1),
@@ -33,7 +32,9 @@ def desenharCena():#funcao de desenho
 
 	glTranslatef(6,0,0)
 	glScalef(0.05, 0.05, 0.05)
-	glCallList(globais.planta.gl_list)
+        glCallList(globais.planta.gl_list)
+
+        glLightfv(GL_LIGHT0, GL_POSITION, (1.0, 1.0, 1.0, 1.0))
 
 	glutSwapBuffers()
 
@@ -65,12 +66,25 @@ def teclaEspecial(tecla, x, y):#funcao para teclas especiais
 def InitGL( altura, largura):
 	glClearColor(0.0,0.0,0.0,0.0)     #cor de fundo branca
 	glClearDepth(1.0)        #abilita limpar o buffer de prof.
-	glEnable(GL_COLOR_MATERIAL)
+
 	glShadeModel(GL_SMOOTH)        #Configura como sera de. a ilum.
 	glDepthFunc(GL_LESS)        #Funcao usada no depth-test
 	glEnable(GL_DEPTH_TEST)        #Habilita o deph-test
+
 	glMatrixMode(GL_PROJECTION)    #Projecao perspectiva
 	glLoadIdentity()        #reseta a matriz de projecao
-
 	#gluPerspective angulo_de_visao aspecto plano_near plano_far
 	gluPerspective(45.0, float(largura/altura), 0.1, 100.0)
+	glMatrixMode(GL_MODELVIEW)    #Projecao perspectiva
+        luzAmbiente()
+
+
+def luzAmbiente():
+    glEnable(GL_LIGHTING)
+    glEnable(GL_LIGHT0)
+    glEnable(GL_LIGHT1)
+
+    glLightfv(GL_LIGHT0, GL_POSITION, (0.0, 1.0, 0.0, 0.0))
+    glLightfv(GL_LIGHT0, GL_AMBIENT, (0.0, 0.0, 0.0, 1.0))
+    glLightfv(GL_LIGHT1, GL_SPECULAR, (1.0, 0.0, 0.0, 1.0))
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, (1.0, 0.0, 0.0, 1.0))
