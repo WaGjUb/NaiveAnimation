@@ -7,6 +7,7 @@ from gl_functions import *
 from globais import *
 from objloader import *
 from mouse_functions import *
+from objeto import *
 import sys            
 
 
@@ -19,8 +20,9 @@ def main():
 	glutInitWindowSize(640, 480)
 	janela = glutCreateWindow("Projeto de CG")
 
-	globais.chaleira = ObjLoader("res/obj/teapot.obj")
-	globais.planta = ObjLoader("res/obj/planta.obj")
+        adiciona_objeto( objeto("res/obj/teapot.obj", scale=[0.5,0.5,0.5]) )
+	#globais.chaleira = ObjLoader("res/obj/teapot.obj")
+	#globais.planta = ObjLoader("res/obj/planta.obj")
 
 	#Inicializa a Janela
 	InitGL(640, 480)

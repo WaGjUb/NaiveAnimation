@@ -29,7 +29,7 @@ def MTL(filename):
 			mtl[values[0]] = map(float, values[1:])
 	return contents
 
-class ObjLoader():
+class ObjLoader(object):
 	def __init__(self, filename, swapyz=False):
 		"""Loads a Wavefront OBJ file. """
 		self.vertices = []
